@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhandara - NRI Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #FF8C00;
+            --text-color: #333;
+            --background-color: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation Bar Styles */
+        header {
+            background-color: var(--background-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Space between logo and text */
+        }
+        
+        .logo img {
+            height: 50px; /* Adjust the height as needed */
+            width: auto; /* Maintain aspect ratio */
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        .get-in-touch {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .get-in-touch:hover {
+            background-color: #e67e00;
+        }
+        
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--background-color);
+                padding: 1rem;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-button {
+                display: block;
+            }
+        }
+        
+        /* Rest of your existing styles */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .plans {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+        
+        .plan-card {
+            background-color: var(--background-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 300px;
+            text-align: center;
+        }
+        
+        .plan-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .plan-card .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .plan-card ul {
+            list-style-type: none;
+            margin-bottom: 2rem;
+        }
+        
+        .plan-card ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .punya-karo {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .punya-karo:hover {
+            background-color: #e67e00;
+        }
+        
+        .bhoj {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .bhoj .price {
+            color: white;
+        }
+        
+        .bhoj .punya-karo {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        
+        .bhoj .punya-karo:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .app-download {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .app-download h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .app-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .app-button img {
+            height: 50px;
+        }
+        
+        .stats {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+            margin: 1rem;
+        }
+        
+        .stat-value {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: background-color 0.3s ease;
+        }
+        
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+        }
+        
+        @media (max-width: 768px) {
+            .plans {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .plan-card {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="WhatsApp Image 2025-01-17 at 4.38.04 PM.jpeg" alt="Punya Pantry Logo">
+                    <div class="logo-text">Punya Pantry</div>
+                </div>
+                <button class="mobile-menu-button">☰</button>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="#">Our Mission</a>
+                    <a href="#">Get Involved</a>
+                    <a href="#">Stories</a>
+                    <a href="#" class="get-in-touch">Donate Now 🤲</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Punya Plan</h1>
+                <p>plans that work for everyone</p>
+            </div>
+        </section>
+
+        <section class="plans">
+            <div class="plan-card prashadam">
+                <h2>PRASHADAM</h2>
+                <p class="price">$501</p>
+                <ul>
+                    <li>Customise meals.</li>
+                    <li>For 100+ peoples.</li>
+                    <li>book plan Before 3 days.</li>
+                    <li>Provides Prashadam Photos.</li>
+                </ul>
+                <button class="punya-karo">Punya Karo</button>
+            </div>
+
+            <div class="plan-card bhoj">
+                <h2>BHOJ</h2>
+                <p class="price">$1100</p>
+                <ul>
+                    <li>Customise meals.</li>
+                    <li>For 250+ peoples.</li>
+                    <li>book plan Before 7 days.</li>
+                    <li>Provides Bhoj Photos/videos.</li>
+                    <li>Customise Location.</li>
+                </ul>
+                <button class="punya-karo">Punya Karo</button>
+            </div>
+
+            <div class="plan-card bhandara">
+                <h2>BHANDARA</h2>
+                <p class="price">$2100</p>
+                <ul>
+                    <li>Customise meals.</li>
+                    <li>For 1000+ peoples.</li>
+                    <li>book plan Before 14 days.</li>
+                    <li>Provides Bhandara Photos/Videos.</li>
+                    <li>Customise Location.</li>
+                </ul>
+                <button class="punya-karo">Punya Karo</button>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="container">
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-value" id="meals-served">0+</div>
+                        <div class="stat-label">Meals Served</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="volunteers">0+</div>
+                        <div class="stat-label">Dedicated Volunteers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="communities">0+</div>
+                        <div class="stat-label">Communities Impacted</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Punya Pantry - Sharing Love Through Food. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="#" class="whatsapp-button" aria-label="Chat on WhatsApp">💬</a>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuButton.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Function to animate counting up to a target number with controlled speed
+        function animateValue(id, start, end, duration) {
+            if (duration <= 0) return;
+
+            let obj = document.getElementById(id);
+            let range = end - start;
+            let minTimer = 50;
+            let stepTime = Math.abs(Math.floor(duration / range));
+            stepTime = Math.max(stepTime, minTimer);
+
+            let startTime = new Date().getTime();
+            let endTime = startTime + duration;
+            let timer;
+
+            function run() {
+                let now = new Date().getTime();
+                let remaining = Math.max((endTime - now) / duration, 0);
+                let value = Math.round(end - (remaining * range));
+                obj.innerHTML = value + "+";
+                if (value == end) {
+                    clearInterval(timer);
+                }
+            }
+
+            timer = setInterval(run, stepTime);
+            run();
+        }
+
+        // When the page loads, start the animations for the statistics
+        window.onload = function() {
+            animateValue("meals-served", 0, 10000, 3000);
+            animateValue("volunteers", 0, 50, 4000);
+            animateValue("communities", 0, 50, 2000);
+        }
+    </script>
+</body>
+</html>
