@@ -3,342 +3,680 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punya Pantry - Sharing Love Through Food</title>
+    <title>Nulyf Foundation - Empowering Lives, Building Futures</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #FF8C00;
+            --primary-color: #4a90e2;
+            --secondary-color: #f39c12;
             --text-color: #333;
-            --background-color: #fff;
+            --light-text-color: #fff;
+            --background-color: #f4f4f4;
         }
-        body, html {
+
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--background-color);
         }
+
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
+
         header {
-            background-color: var(--background-color);
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
             padding: 1rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
         }
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px; /* Space between logo and text */
         }
-        .logo img {
-            height: 50px; /* Adjust the height as needed */
-            width: auto; /* Maintain aspect ratio */
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
         }
+
         .logo-text {
             font-size: 1.5rem;
             font-weight: bold;
-            color: var(--primary-color);
+            margin-left: 10px;
         }
-        .nav-links {
+
+        .nav-menu {
             display: flex;
-            gap: 1rem;
+            list-style: none;
         }
-        nav a {
-            color: var(--text-color);
+
+        .nav-menu li {
+            margin-left: 1rem;
+        }
+
+        .nav-menu li a {
+            color: var(--light-text-color);
             text-decoration: none;
-            font-weight: 500;
             transition: color 0.3s ease;
         }
-        nav a:hover {
-            color: var(--primary-color);
+
+        .nav-menu li a:hover {
+            color: var(--secondary-color);
         }
-        .get-in-touch {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .get-in-touch:hover {
-            background-color: #e67e00;
-        }
-        .hero-slider {
-            position: relative;
-            height: 600px;
-            overflow: hidden;
-        }
-        .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .hero-slide.active {
-            opacity: 1;
-        }
-        .hero-content {
-            text-align: center;
-            color: white;
-            max-width: 800px;
-            padding: 2rem;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-        }
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-        .cta-button:hover {
-            background-color: #e67e00;
-        }
-        .stats {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-        }
-        .stats-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-        .stat-item {
-            flex: 1;
-            min-width: 200px;
-            margin: 1rem;
-        }
-        .stat-value {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        .stat-label {
-            font-size: 1rem;
-        }
-        .content-section {
-            padding: 4rem 0;
-            text-align: center;
-        }
-        .content-section h2 {
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .content-section p {
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            font-size: 1.1rem;
-        }
-        .media-mentions {
-            background-color: #f8f8f8;
-            padding: 4rem 0;
-            text-align: center;
-        }
-        .media-mentions h2 {
-            color: var(--text-color);
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-        .media-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-        .media-logo {
-            max-width: 150px;
-            height: auto;
-        }
-        .whatsapp-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            text-decoration: none;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            transition: background-color 0.3s ease;
-        }
-        .whatsapp-button:hover {
-            background-color: #128C7E;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-        .mobile-menu-button {
+
+        .menu-toggle {
             display: none;
             background: none;
             border: none;
-            font-size: 1.5rem;
             cursor: pointer;
         }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--light-text-color);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-text-color);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e67e22;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            padding-right: 2rem;
+            min-width: 300px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .programs-container {
+            position: relative;
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 0 40px;
+        }
+
+        .programs-wrapper {
+            overflow: hidden;
+        }
+
+        .programs {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .program-card {
+            flex: 0 0 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .program-card-inner {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .program-card-inner:hover {
+            transform: translateY(-5px);
+        }
+
+        .program-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .program-card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .program-card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+            font-size: 1.25rem;
+        }
+
+        .program-card p {
+            color: #666;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+            z-index: 2;
+        }
+
+        .slider-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .slider-btn.prev {
+            left: 0;
+        }
+
+        .slider-btn.next {
+            right: 0;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background-color: var(--primary-color);
+        }
+
+        #founder {
+            background-color: #f0f8ff;
+            padding: 60px 0;
+        }
+
+        .founder-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .founder-image {
+            flex: 1;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        .founder-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .founder-text {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .founder-text h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .founder-text p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .founder-social {
+            margin-top: 2rem;
+        }
+
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .contact-info i {
+            color: var(--secondary-color);
+            margin-right: 15px;
+            width: 20px;
+            font-size: 1.2rem;
+        }
+
+        .contact-info a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .contact-map {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-icons {
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--light-text-color);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary-color);
+        }
+
         @media (max-width: 768px) {
-            .nav-links {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
                 display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 100%;
+                top: 70px;
                 left: 0;
                 right: 0;
-                background-color: var(--background-color);
+                background-color: var(--primary-color);
                 padding: 1rem;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             }
-            .nav-links.active {
+
+            .nav-menu.active {
                 display: flex;
             }
-            .mobile-menu-button {
-                display: block;
+
+            .nav-menu li {
+                margin: 0.5rem 0;
             }
-            .stats-container {
+
+            .logo-img {
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
                 flex-direction: column;
             }
-            .stat-item {
+
+            .about-text {
+                padding-right: 0;
                 margin-bottom: 2rem;
             }
-            .content-section h2 {
+
+            .hero h1 {
                 font-size: 2rem;
             }
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            .hero-content p {
+
+            .hero p {
                 font-size: 1rem;
+            }
+
+            .programs-container {
+                padding: 0 20px;
+            }
+
+            .founder-image img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .contact-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1023px) {
+            .program-card {
+                flex: 0 0 50%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .program-card {
+                flex: 0 0 33.333%;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <img src="WhatsApp Image 2025-01-17 at 4.38.04 PM.jpeg" alt="Punya Pantry Logo"> <!-- Add your logo image here -->
-                    <div class="logo-text">Punya Pantry</div> <!-- Add the name here -->
-                </div>
-                <button class="mobile-menu-button">☰</button>
-                <div class="nav-links">
-                    <a href="#">Home</a>
-                    <a href="current.html">Current bhandras details</a>
-                    <a href="CONT.html">Get Involved</a>
-                    <a href="#">Stories</a>
-                    <a href="#" class="get-in-touch">Donate Now 🤲</a>
-                </div>
-            </nav>
-        </div>
+        <nav class="container">
+            <div class="logo">
+                <img src="WhatsApp Image 2025-01-17 at 4.38.04 PM.jpeg" alt="Nulyf Foundation Logo" class="logo-img">
+                <span class="logo-text">Nulyf Foundation</span>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#founder">Our Founder</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="hero-slider">
-        <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
-            <div class="hero-content">
-                <h1>Nourishing Hearts, One Meal at a Time</h1>
-                <p>Join us in our mission to spread love and compassion through the ancient tradition of Bhandara.</p>
-                <a href="#" class="cta-button">Learn More</a>
-            </div>
-        </div>
-        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1541802645635-11f2286a7482?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
-            <div class="hero-content">
-                <h1>Sharing is Caring</h1>
-                <p>Experience the joy of giving and the warmth of community through our Bhandara services.</p>
-                <a href="#" class="cta-button">Get Involved</a>
-            </div>
-        </div>
-        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
-            <div class="hero-content">
-                <h1>Together, We Can Make a Difference</h1>
-                <p>Your support helps us reach more people and spread the message of love and unity.</p>
-                <a href="#" class="cta-button">Donate Now</a>
-            </div>
-        </div>
-    </div>
-
-    <section class="stats">
-        <div class="container">
-            <div class="stats-container">
-                <div class="stat-item">
-                    <div class="stat-value" id="meals-served">10,000K+</div>
-                    <div class="stat-label">Meals Served</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="volunteers">50,000K+</div>
-                    <div class="stat-label">Dedicated Volunteers</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="communities">50+</div>
-                    <div class="stat-label">Communities Impacted</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <main>
-        <section class="content-section">
-            <div class="container">
-                <h2>Embracing the Spirit of Bhandara</h2>
-                <p>At Punya Pantry, we believe in the power of food to unite, heal, and spread joy. Our mission is to revive the ancient tradition of communal meals, fostering a sense of belonging and compassion in every community we touch. Through the simple act of sharing a meal, we create bonds that transcend barriers and nurture the soul.</p>
-                <img src="Screenshot 2025-01-17 230843.png" alt="Community Meal" style="max-width: 100%; height: auto; margin-bottom: 2rem; border-radius: 10px;">
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>शिक्षाः भोजनं च स्वास्थ्यं सर्वेषां हिताय ||</h1>
+                <p>Join us in our mission to create positive change and transform communities.</p>
+                <a href="https://connexgrow.github.io/bhandra/" class="btn">Punya Pantry</a>
             </div>
         </section>
 
-        <section class="content-section">
+        <section id="about" class="section">
             <div class="container">
-                <h2>Nourishing Bodies, Enriching Lives</h2>
-                <p>Every meal we serve is more than just sustenance; it's a gesture of love, a moment of connection, and a step towards a more compassionate world. Join us in our journey to spread warmth, one plate at a time, and experience the transformative power of sharing.</p>
-                <img src="hq720.jpg" alt="Sharing Food" style="max-width: 100%; height: auto; margin-bottom: 2rem; border-radius: 10px;">
+                <h2 class="section-title">About Nulyf Foundation</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Nulyf Foundation is a non-profit organization dedicated to improving lives and building stronger communities. Our mission is to provide education, healthcare, and economic opportunities to those in need.</p>
+                        <p>Since our inception in 2010, we have impacted over 100,000 lives across 50 communities. Our dedicated team of volunteers and partners work tirelessly to create sustainable change and empower individuals to reach their full potential.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Nulyf Foundation Team">
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="media-mentions">
+        <section id="founder" class="section">
             <div class="container">
-                <h2>Our Impact Recognized</h2>
-                <div class="media-logos">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/BBC_News_2019.svg/1200px-BBC_News_2019.svg.png" alt="BBC News Logo" class="media-logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/The_Guardian_2018.svg/2560px-The_Guardian_2018.svg.png" alt="The Guardian Logo" class="media-logo">
-                    <img src="images.jfif" alt="The Daily Hunt Logo" class="media-logo">
+                <div class="founder-content">
+                    <div class="founder-image">
+                        <img src="DSC_073800.jpg" alt="Dr. Prerit Mathur">
+                    </div>
+                    <div class="founder-text">
+                        <h3>Founder & CEO - Dr. Prerit Mathur</h3>
+                        <p>Dr. Prerit Mathur, a distinguished healthcare professional with over 12 years of experience, leads Nulyf Foundation with a vision to transform communities through sustainable development and compassionate service. As a Senior Consultant in Pediatric Surgery and Pediatric Urology at Sir Ganga Ram Hospital, he brings his medical expertise and humanitarian values to guide our mission.</p>
+                        <p>Under his leadership, Nulyf Foundation has expanded its reach across multiple programs including healthcare initiatives, education support, and community welfare projects. His dedication to serving others and commitment to excellence continues to inspire our foundation's work in creating lasting positive change.</p>
+                        <div class="founder-social">
+                            <a href="https://www.linkedin.com/in/dr-prerit-mathur-50855119/" target="_blank" rel="noopener noreferrer" class="btn">
+                                <i class="fab fa-linkedin"></i>
+                                Connect on LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="programs" class="section">
+            <div class="container">
+                <h2 class="section-title">Our Programs</h2>
+                <div class="programs-container">
+                    <button class="slider-btn prev" aria-label="Previous program">&lt;</button>
+                    <div class="programs-wrapper">
+                        <div class="programs">
+                            <div class="program-card">
+                                <div class="program-card-inner">
+                                    <img src="1716969094779.jfif" alt="Education Program">
+                                    <div class="program-card-content">
+                                        <h3>Education for All</h3>
+                                        <p>Providing quality education and learning resources to underprivileged children in rural India, empowering them to build a brighter future.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="program-card">
+                                <div class="program-card-inner">
+                                    <img src="article_187_cover_en_US.jpg" alt="Healthcare Program">
+                                    <div class="program-card-content">
+                                        <h3>Community Health</h3>
+                                        <p>Improving access to healthcare services and promoting wellness in rural areas, ensuring better health outcomes for underserved communities.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="program-card">
+                                <div class="program-card-inner">
+                                    <img src="https://images.unsplash.com/photo-1556484687-30636164638b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Economic Empowerment Program">
+                                    <div class="program-card-content">
+                                        <h3>Economic Empowerment</h3>
+                                        <p>Supporting small businesses and providing vocational training for sustainable livelihoods, helping families break the cycle of poverty.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="program-card">
+                                <div class="program-card-inner">
+                                    <img src="960094_4f125af63c114100a220f2d412a7c20a~mv2.webp" alt="Cow Seva Program">
+                                    <div class="program-card-content">
+                                        <h3>Cow Seva</h3>
+                                        <p>Protecting and caring for cows, promoting sustainable dairy practices, and supporting local farmers to preserve India's cultural heritage.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="program-card">
+                                <div class="program-card-inner">
+                                    <img src="1735299743799.jpg" alt="Community Kitchen Program">
+                                    <div class="program-card-content">
+                                        <h3>Community Kitchen</h3>
+                                        <p>Providing nutritious meals to those in need and fostering a sense of community through shared dining experiences, combating hunger and malnutrition.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-btn next" aria-label="Next program">&gt;</button>
+                </div>
+                <div class="slider-dots"></div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Get Involved</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <a href="https://www.google.com/maps/search/?api=1&query=A-1,+Rajouri+Garden,+Near+Metro+Station,+New+Delhi+-+110027" target="_blank" rel="noopener noreferrer">
+                                A-1, Rajouri Garden, Near Metro Station, New Delhi - 110027
+                            </a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+911145683892">+91-11-4568-3892</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+919871033456">+91-98710-33456</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@newdelhispine.com">info@newdelhispine.com</a>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://facebook.com/newdelhispine" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/newdelhispine" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                            <a href="https://instagram.com/newdelhispine" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                            <a href="https://linkedin.com/company/newdelhispine" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.8378881518343!2d77.11572007557767!3d28.642979175680396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d037fe4ab2f1d%3A0x7a5aa139304be4a4!2sNew%20Delhi%20Spine!5e0!3m2!1sen!2sin!4v1699644579744!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
             </div>
         </section>
@@ -346,78 +684,147 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 Punya Pantry - Sharing Love Through Food. All rights reserved.</p>
+            <p>&copy; 2023 Nulyf Foundation. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
         </div>
     </footer>
 
-    <a href="#" class="whatsapp-button" aria-label="Chat on WhatsApp">💬</a>
-
     <script>
-        // Function to animate counting up to a target number with controlled speed
-        function animateValue(id, start, end, duration) {
-            if (duration <= 0) return;
-            let obj = document.getElementById(id);
-            let range = end - start;
-            let minTimer = 50;
-            let stepTime = Math.abs(Math.floor(duration / range));
-            stepTime = Math.max(stepTime, minTimer);
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
 
-            let startTime = new Date().getTime();
-            let endTime = startTime + duration;
-            let timer;
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
 
-            function run() {
-                let now = new Date().getTime();
-                let remaining = Math.max((endTime - now) / duration, 0);
-                let value = Math.round(end - (remaining * range));
-                obj.innerHTML = value + "+";
-                if (value == end) clearInterval(timer);
-            }
-
-            timer = setInterval(run, stepTime);
-            run();
-        }
-
-        // Animate statistics on page load
-        window.onload = function() {
-            animateValue("meals-served", 0, 10000, 3000);
-            animateValue("volunteers", 0, 50, 4000);
-            animateValue("communities", 0, 50, 2000);
-        };
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+            // Close menu when a link is clicked
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
                 });
             });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Simple parallax effect for hero section
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.pageYOffset;
+                document.querySelector('.hero').style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+            });
+
+            // Program slider functionality
+            const programsContainer = document.querySelector('.programs');
+            const prevBtn = document.querySelector('.slider-btn.prev');
+            const nextBtn = document.querySelector('.slider-btn.next');
+            const programCards = document.querySelectorAll('.program-card');
+            const dotsContainer = document.querySelector('.slider-dots');
+            
+            let currentIndex = 0;
+            let cardsPerView = getCardsPerView();
+            const totalSlides = programCards.length;
+
+            // Create dots
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('slider-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+
+            function getCardsPerView() {
+                if (window.innerWidth >= 1024) return 3;
+                if (window.innerWidth >= 768) return 2;
+                return 1;
+            }
+
+            function updateSliderPosition() {
+                const cardWidth = programCards[0].offsetWidth;
+                programsContainer.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+                
+                // Update dots
+                document.querySelectorAll('.slider-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+
+                // Update button states
+                prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+                nextBtn.style.opacity = currentIndex === totalSlides - cardsPerView ? '0.5' : '1';
+            }
+
+            function goToSlide(index) {
+                currentIndex = Math.min(Math.max(0, index), totalSlides - cardsPerView);
+                updateSliderPosition();
+            }
+
+            prevBtn.addEventListener('click', () => {
+                goToSlide(currentIndex - 1);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                goToSlide(currentIndex + 1);
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                const newCardsPerView = getCardsPerView();
+                if (newCardsPerView !== cardsPerView) {
+                    cardsPerView = newCardsPerView;
+                    goToSlide(currentIndex);
+                }
+            });
+
+            // Initial position
+            updateSliderPosition();
+
+            // Touch support for mobile devices
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            programsContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+            });
+
+            programsContainer.addEventListener('touchmove', (e) => {
+                touchEndX = e.touches[0].clientX;
+            });
+
+            programsContainer.addEventListener('touchend', () => {
+                const touchDiff = touchStartX - touchEndX;
+                if (Math.abs(touchDiff) > 50) { // Minimum swipe distance
+                    if (touchDiff > 0) {
+                        goToSlide(currentIndex + 1);
+                    } else {
+                        goToSlide(currentIndex - 1);
+                    }
+                }
+            });
         });
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.querySelector('.mobile-menu-button');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileMenuButton.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Hero image slider
-        const slides = document.querySelectorAll('.hero-slide');
-        let currentSlide = 0;
-
-        function showSlide(n) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (n + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        setInterval(nextSlide, 5000); // Change slide every 5 seconds
     </script>
 </body>
 </html>
