@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punya Pantry - Sharing Love Through Food</title>
+    <style>
+        :root {
+            --primary-color: #FF8C00;
+            --text-color: #333;
+            --background-color: #fff;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: var(--background-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Space between logo and text */
+        }
+        .logo img {
+            height: 50px; /* Adjust the height as needed */
+            width: auto; /* Maintain aspect ratio */
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        .get-in-touch {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .get-in-touch:hover {
+            background-color: #e67e00;
+        }
+        .hero-slider {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-slide.active {
+            opacity: 1;
+        }
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #e67e00;
+        }
+        .stats {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+            margin: 1rem;
+        }
+        .stat-value {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 1rem;
+        }
+        .content-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .content-section h2 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .content-section p {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+        .media-mentions {
+            background-color: #f8f8f8;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .media-mentions h2 {
+            color: var(--text-color);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .media-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .media-logo {
+            max-width: 150px;
+            height: auto;
+        }
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: background-color 0.3s ease;
+        }
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--background-color);
+                padding: 1rem;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .mobile-menu-button {
+                display: block;
+            }
+            .stats-container {
+                flex-direction: column;
+            }
+            .stat-item {
+                margin-bottom: 2rem;
+            }
+            .content-section h2 {
+                font-size: 2rem;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="WhatsApp Image 2025-01-17 at 4.38.04 PM.jpeg" alt="Punya Pantry Logo"> <!-- Add your logo image here -->
+                    <div class="logo-text">Punya Pantry</div> <!-- Add the name here -->
+                </div>
+                <button class="mobile-menu-button">☰</button>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="https://connexgrow.github.io/bhandrawebsitee/">Current bhandras details</a>
+                    <a href="CONTACT.HTML">Get Involved</a>
+                    <a href="#">Stories</a>
+                    <a href="#" class="get-in-touch">Donate Now 🤲</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero-slider">
+        <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+            <div class="hero-content">
+                <h1>Nourishing Hearts, One Meal at a Time</h1>
+                <p>Join us in our mission to spread love and compassion through the ancient tradition of Bhandara.</p>
+                <a href="#" class="cta-button">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1541802645635-11f2286a7482?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+            <div class="hero-content">
+                <h1>Sharing is Caring</h1>
+                <p>Experience the joy of giving and the warmth of community through our Bhandara services.</p>
+                <a href="#" class="cta-button">Get Involved</a>
+            </div>
+        </div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+            <div class="hero-content">
+                <h1>Together, We Can Make a Difference</h1>
+                <p>Your support helps us reach more people and spread the message of love and unity.</p>
+                <a href="#" class="cta-button">Donate Now</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-value" id="meals-served">10,000K+</div>
+                    <div class="stat-label">Meals Served</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="volunteers">50,000K+</div>
+                    <div class="stat-label">Dedicated Volunteers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="communities">50+</div>
+                    <div class="stat-label">Communities Impacted</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section class="content-section">
+            <div class="container">
+                <h2>Embracing the Spirit of Bhandara</h2>
+                <p>At Punya Pantry, we believe in the power of food to unite, heal, and spread joy. Our mission is to revive the ancient tradition of communal meals, fostering a sense of belonging and compassion in every community we touch. Through the simple act of sharing a meal, we create bonds that transcend barriers and nurture the soul.</p>
+                <img src="Screenshot 2025-01-17 230843.png" alt="Community Meal" style="max-width: 100%; height: auto; margin-bottom: 2rem; border-radius: 10px;">
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>Nourishing Bodies, Enriching Lives</h2>
+                <p>Every meal we serve is more than just sustenance; it's a gesture of love, a moment of connection, and a step towards a more compassionate world. Join us in our journey to spread warmth, one plate at a time, and experience the transformative power of sharing.</p>
+                <img src="hq720.jpg" alt="Sharing Food" style="max-width: 100%; height: auto; margin-bottom: 2rem; border-radius: 10px;">
+            </div>
+        </section>
+
+        <section class="media-mentions">
+            <div class="container">
+                <h2>Our Impact Recognized</h2>
+                <div class="media-logos">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/BBC_News_2019.svg/1200px-BBC_News_2019.svg.png" alt="BBC News Logo" class="media-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/The_Guardian_2018.svg/2560px-The_Guardian_2018.svg.png" alt="The Guardian Logo" class="media-logo">
+                    <img src="images.jfif" alt="The Daily Hunt Logo" class="media-logo">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Punya Pantry - Sharing Love Through Food. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="#" class="whatsapp-button" aria-label="Chat on WhatsApp">💬</a>
+
+    <script>
+        // Function to animate counting up to a target number with controlled speed
+        function animateValue(id, start, end, duration) {
+            if (duration <= 0) return;
+            let obj = document.getElementById(id);
+            let range = end - start;
+            let minTimer = 50;
+            let stepTime = Math.abs(Math.floor(duration / range));
+            stepTime = Math.max(stepTime, minTimer);
+
+            let startTime = new Date().getTime();
+            let endTime = startTime + duration;
+            let timer;
+
+            function run() {
+                let now = new Date().getTime();
+                let remaining = Math.max((endTime - now) / duration, 0);
+                let value = Math.round(end - (remaining * range));
+                obj.innerHTML = value + "+";
+                if (value == end) clearInterval(timer);
+            }
+
+            timer = setInterval(run, stepTime);
+            run();
+        }
+
+        // Animate statistics on page load
+        window.onload = function() {
+            animateValue("meals-served", 0, 10000, 3000);
+            animateValue("volunteers", 0, 50, 4000);
+            animateValue("communities", 0, 50, 2000);
+        };
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuButton.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Hero image slider
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    </script>
+</body>
+</html>
