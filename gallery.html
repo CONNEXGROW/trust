@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Nulyf Foundation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f39c12;
+            --text-color: #333;
+            --light-text-color: #fff;
+            --background-color: #f4f4f4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 1rem;
+        }
+
+        .nav-menu li a {
+            color: var(--light-text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        #lightbox-caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-icons {
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--light-text-color);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Nulyf Foundation</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#founder">Our Founder</a></li>
+                <li><a href="index.html#programs">Programs</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="index.html#testimonials">Testimonials</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="gallery" class="section">
+            <div class="container">
+                <h2 class="section-title">Our Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="1716969094779.jfif" alt="Education Program" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="1732695110676.jfif" alt="Community meals" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="1735299743799.jfif" alt="Community Outreach" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="WhatsApp Image 2025-01-17 at 4.38.03 PM (1).jpeg" alt="Vocational Training" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="WhatsApp Image 2025-01-17 at 4.38.03 PM (2).jpeg" alt="Medical Support " loading="lazy">
+                    </div>
+                    <!-- <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300?text=Women+Empowerment" alt="Women Empowerment" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300?text=Environmental+Projects" alt="Environmental Projects" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300?text=Youth+Leadership" alt="Youth Leadership" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300?text=Elderly+Care" alt="Elderly Care" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300?text=Disaster+Relief" alt="Disaster Relief" loading="lazy">
+                    </div> -->
+                    <!-- <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300?text=Cultural+Preservation" alt="Cultural Preservation" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300?text=Sports+Development" alt="Sports Development" loading="lazy">
+                    </div> -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Nulyf Foundation. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="lightbox-caption"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lightbox functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const close = document.getElementsByClassName('close')[0];
+
+            // Open lightbox
+            document.querySelectorAll('.gallery-item img').forEach(img => {
+                img.onclick = function() {
+                    lightbox.style.display = "block";
+                    lightboxImg.src = this.src;
+                    lightboxCaption.innerHTML = this.alt;
+                }
+            });
+
+            // Close lightbox
+            close.onclick = function() {
+                lightbox.style.display = "none";
+            }
+
+            // Close lightbox when clicking outside the image
+            lightbox.onclick = function(e) {
+                if (e.target === lightbox) {
+                    lightbox.style.display = "none";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
