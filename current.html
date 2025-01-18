@@ -40,13 +40,13 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px; /* Space between logo and text */
+      gap: 10px;
       text-decoration: none;
     }
 
     .logo img {
-      height: 40px; /* Adjust the height as needed */
-      width: auto; /* Maintain aspect ratio */
+      height: 40px;
+      width: auto;
     }
 
     .logo-text {
@@ -62,9 +62,9 @@
     }
 
     .nav-link {
-      color: #333;
+      color: #333; /* Darker color for navigation text */
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600; /* Increased font weight for better visibility */
     }
 
     .donate-btn {
@@ -206,6 +206,22 @@
       color: #666;
     }
 
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      background-color: #25D366;
+      border-radius: 50%;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .whatsapp-button img {
+      width: 30px;
+      height: 30px;
+    }
+
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -247,8 +263,8 @@
   <nav class="navbar">
     <div class="nav-content">
       <a href="#" class="logo">
-        <img src="WhatsApp Image 2025-01-17 at 4.38.04 PM.jpeg" alt="Punya Pantry Logo"> <!-- Add your logo image here -->
-        <div class="logo-text">Punya Pantry</div> <!-- Add the name here -->
+        <img src="WhatsApp Image 2025-01-17 at 4.38.04 PM.jpeg" alt="Punya Pantry Logo">
+        <div class="logo-text">Punya Pantry</div>
       </a>
       <div class="menu-icon">☰</div>
       <div class="nav-links">
@@ -256,10 +272,6 @@
         <a href="#" class="nav-link">Our Mission</a>
         <a href="paisa.html" class="nav-link">Get Involved</a>
         <a href="#" class="nav-link">Stories</a>
-         <a href="https://wa.me/919204451363" class="whatsapp-button" aria-label="Chat on WhatsApp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" style="width: 30px; height: 30px;">
-    </a>
-
         <a href="#" class="donate-btn">
           Donate Now 🧡
         </a>
@@ -291,17 +303,18 @@
       </div>
     </div>
   </section>
-  
-
 
   <footer class="footer">
     <p>© 2023 Punya Pantry - Sharing Love Through Food. All rights reserved.</p>
   </footer>
 
+  <a href="https://wa.me/919204451363" class="whatsapp-button" aria-label="Chat on WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
+  </a>
+
   <script>
     const backendUrl = 'https://backend-t3fk.onrender.com';
 
-    // Fetch and display events
     async function fetchEvents() {
       try {
         const response = await fetch(`${backendUrl}/events`);
@@ -313,23 +326,20 @@
       }
     }
 
-    // Format date to a more readable format
     function formatDate(dateString) {
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
       return new Date(dateString).toLocaleDateString(undefined, options);
     }
 
-    // Format time to 12-hour format with AM/PM
     function formatTime(timeString) {
       const [hours, minutes] = timeString.split(':');
-      const date = new Date(2000, 0, 1, hours, minutes); // Year, month, and day are arbitrary
+      const date = new Date(2000, 0, 1, hours, minutes);
       return date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', hour12: true });
     }
 
-    // Display events on the page
     function displayEvents(events) {
       const contentContainer = document.getElementById('contentContainer');
-      contentContainer.innerHTML = ''; // Clear existing content
+      contentContainer.innerHTML = '';
 
       events.forEach((event) => {
         const eventDiv = document.createElement('div');
@@ -361,12 +371,10 @@
       });
     }
 
-    // Fetch events on page load with a delay to show loading animation
     setTimeout(() => {
       fetchEvents();
     }, 2000);
 
-    // Stats animation
     function animateValue(id, start, end, duration) {
       if (duration <= 0) return;
 
@@ -411,7 +419,6 @@
 
     observer.observe(statsSection);
 
-    // Mobile menu toggle
     const menuIcon = document.querySelector('.menu-icon');
     const navLinks = document.querySelector('.nav-links');
 
@@ -419,7 +426,6 @@
       navLinks.classList.toggle('active');
     });
 
-    // Pull-to-refresh functionality
     let touchstartY = 0;
     let touchendY = 0;
 
@@ -433,9 +439,8 @@
     });
 
     function handleSwipe() {
-      if (touchendY < touchstartY) return; // Swiped up, ignore
+      if (touchendY < touchstartY) return;
       if (touchendY - touchstartY > 100 && window.scrollY === 0) {
-        // Pulled down more than 100px and at the top of the page
         refreshContent();
       }
     }
@@ -448,3 +453,4 @@
   </script>
 </body>
 </html>
+
