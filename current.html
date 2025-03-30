@@ -10,7 +10,7 @@
       --text-color: #333;
       --background-color: #fff;
     }
-    
+
     body, html {
       margin: 0;
       padding: 0;
@@ -22,13 +22,13 @@
       display: flex;
       flex-direction: column;
     }
-    
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
-    
+
     header {
       background-color: var(--background-color);
       padding: 1rem 0;
@@ -37,32 +37,32 @@
       top: 0;
       z-index: 1000;
     }
-    
+
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    
+
     .logo {
       display: flex;
       align-items: center;
       gap: 10px;
       text-decoration: none;
     }
-    
+
     .logo img {
-      height: 50px;
-      width: 50px;
+      height: 40px;
+      width: 40px;
       border-radius: 50%;
     }
-    
+
     .logo-text {
       font-size: 1.5rem;
       font-weight: bold;
       color: var(--primary-color);
     }
-    
+
     .nav-links {
       display: flex;
       flex-direction: column;
@@ -79,13 +79,13 @@
       transition: all 0.3s ease;
       z-index: 999;
     }
-    
+
     .nav-links.active {
       transform: translateY(0);
       opacity: 1;
       visibility: visible;
     }
-    
+
     .nav-links a {
       color: var(--text-color);
       text-decoration: none;
@@ -94,11 +94,11 @@
       border-bottom: 1px solid #eee;
       transition: color 0.3s ease;
     }
-    
+
     .nav-links a:hover {
       color: var(--primary-color);
     }
-    
+
     .get-in-touch {
       background-color: var(--primary-color);
       color: white !important;
@@ -112,11 +112,11 @@
       justify-content: center;
       align-items: center;
     }
-    
+
     .get-in-touch:hover {
       background-color: #e67e00;
     }
-    
+
     .mobile-menu-button {
       background: none;
       border: none;
@@ -179,6 +179,16 @@
 
     .location-value {
       color: var(--primary-color);
+    }
+
+    /* Modified to make images smaller */
+    .event-image {
+      max-width: 100%;
+      max-height: 200px; /* Limit height */
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 4px;
     }
 
     .stats {
@@ -262,8 +272,8 @@
       right: 20px;
       background-color: #25D366;
       color: white;
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -280,8 +290,8 @@
     }
 
     .whatsapp-button img {
-      width: 30px;
-      height: 30px;
+      width: 25px;
+      height: 25px;
     }
 
     @media (min-width: 769px) {
@@ -296,17 +306,17 @@
         align-items: center;
         gap: 1rem;
       }
-      
+
       .nav-links a {
         border-bottom: none;
         padding: 0;
       }
-      
+
       .get-in-touch {
         margin-top: 0;
         padding: 0.5rem 1rem;
       }
-      
+
       .mobile-menu-button {
         display: none;
       }
@@ -316,11 +326,11 @@
       .stats-container {
         flex-direction: column;
       }
-      
+
       .stat-item {
         margin-bottom: 2rem;
       }
-      
+
       .info-container {
         margin: 2rem 1rem;
         padding: 1rem;
@@ -434,18 +444,21 @@
             <div class="info-section">
               <div class="info-label">Name</div>
               <div class="info-value">${event.name || "Unnamed"}</div>
-            </div>
-            <div class="info-section">
+            
               <div class="info-label">Date</div>
               <div class="info-value">${formattedDate || "Unknown"}</div>
-            </div>
-            <div class="info-section">
+            
               <div class="info-label">Time</div>
               <div class="info-value">${formattedTime || "Not specified"}</div>
-            </div>
-            <div class="info-section">
+            
               <div class="info-label">Location</div>
               <div class="info-value location-value">${event.location || "Not specified"}</div>
+            </div>
+            <div class="info-section">
+              <div class="info-label">Picture</div>
+              <div class="info-value">
+                <img src="${event.pictureUrl}" alt="Event Picture" class="event-image">
+              </div>
             </div>
           `;
 
@@ -458,11 +471,13 @@
     }
 
     function formatDate(dateString) {
+      if (!dateString) return null;
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
       return new Date(dateString).toLocaleDateString(undefined, options);
     }
 
     function formatTime(timeString) {
+      if (!timeString) return null;
       const [hours, minutes] = timeString.split(':');
       const date = new Date(2000, 0, 1, hours, minutes);
       return date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', hour12: true });
