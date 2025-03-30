@@ -274,6 +274,9 @@
       }
     }
   </style>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </head>
 <body>
   <nav class="navbar">
@@ -329,16 +332,68 @@
   </a>
 
   <script>
-    const backendUrl = 'https://backend-t3fk.onrender.com';
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyD1NcfC-IjVXwaxMZG0kjn35L2zT6C5UJk",
+      authDomain: "bhandra-1fd1b.firebaseapp.com",
+      projectId: "bhandra-1fd1b",
+      storageBucket: "bhandra-1fd1b.appspot.com",
+      messagingSenderId: "643089692619",
+      appId: "1:643089692619:web:1d8d430ce550ab19d1e84e",
+      measurementId: "G-RJNF23H1J8"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
     async function fetchEvents() {
       try {
-        const response = await fetch(`${backendUrl}/events`);
-        if (!response.ok) throw new Error('Failed to fetch data');
-        const events = await response.json();
-        displayEvents(events);
+        const contentContainer = document.getElementById('contentContainer');
+        contentContainer.innerHTML = '<div class="loading"></div>';
+
+        const querySnapshot = await db.collection("events").get();
+
+        if (querySnapshot.empty) {
+          contentContainer.innerHTML = "<p>No events found</p>";
+          return;
+        }
+
+        contentContainer.innerHTML = ""; // Clear loading indicator
+
+        // Loop through all documents
+        querySnapshot.forEach((doc) => {
+          const event = doc.data();
+          const eventDiv = document.createElement("div");
+          eventDiv.className = 'info-block';
+
+          const formattedDate = formatDate(event.date);
+          const formattedTime = formatTime(event.time);
+
+          eventDiv.innerHTML = `
+            <div class="info-section">
+              <div class="info-label">Name</div>
+              <div class="info-value">${event.name || "Unnamed"}</div>
+            </div>
+            <div class="info-section">
+              <div class="info-label">Date</div>
+              <div class="info-value">${formattedDate || "Unknown"}</div>
+            </div>
+            <div class="info-section">
+              <div class="info-label">Time</div>
+              <div class="info-value">${formattedTime || "Not specified"}</div>
+            </div>
+            <div class="info-section">
+              <div class="info-label">Location</div>
+              <div class="info-value location-value">${event.location || "Not specified"}</div>
+            </div>
+          `;
+
+          contentContainer.appendChild(eventDiv);
+        });
       } catch (error) {
-        console.error('Error fetching events:', error);
+        console.error("Error fetching events:", error);
+        document.getElementById("contentContainer").innerHTML = "<p>Error loading events</p>";
       }
     }
 
@@ -353,43 +408,8 @@
       return date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', hour12: true });
     }
 
-    function displayEvents(events) {
-      const contentContainer = document.getElementById('contentContainer');
-      contentContainer.innerHTML = '';
-
-      events.forEach((event) => {
-        const eventDiv = document.createElement('div');
-        eventDiv.className = 'info-block';
-
-        const formattedDate = formatDate(event.date);
-        const formattedTime = formatTime(event.time);
-
-        eventDiv.innerHTML = `
-          <div class="info-section">
-            <div class="info-label">Name</div>
-            <div class="info-value">${event.name}</div>
-          </div>
-          <div class="info-section">
-            <div class="info-label">Date</div>
-            <div class="info-value">${formattedDate}</div>
-          </div>
-          <div class="info-section">
-            <div class="info-label">Time</div>
-            <div class="info-value">${formattedTime}</div>
-          </div>
-          <div class="info-section">
-            <div class="info-label">Location</div>
-            <div class="info-value location-value">${event.location}</div>
-          </div>
-        `;
-
-        contentContainer.appendChild(eventDiv);
-      });
-    }
-
-    setTimeout(() => {
-      fetchEvents();
-    }, 2000);
+    // Fetch events when the page loads
+    window.onload = fetchEvents;
 
     function animateValue(id, start, end, duration) {
       if (duration <= 0) return;
@@ -462,8 +482,6 @@
     }
 
     function refreshContent() {
-      const contentContainer = document.getElementById('contentContainer');
-      contentContainer.innerHTML = '<div class="loading"></div>';
       fetchEvents();
     }
   </script>
