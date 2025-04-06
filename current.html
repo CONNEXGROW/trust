@@ -44,6 +44,7 @@
       align-items: center;
     }
 
+    /* Updated logo styling based on reference */
     .logo {
       display: flex;
       align-items: center;
@@ -51,12 +52,11 @@
       text-decoration: none;
     }
 
-    /* Fixed logo size */
+    /* Updated logo image styling based on reference */
     .logo img {
-      height: 60px;
-      width: 60px;
-      border-radius: 50%;
-      object-fit: cover;
+      height: 50px;
+      width: auto;
+      /* Removed border-radius to match reference */
     }
 
     .logo-text {
@@ -65,34 +65,16 @@
       color: var(--primary-color);
     }
 
+    /* Updated nav-links styling based on reference */
     .nav-links {
       display: flex;
-      flex-direction: column;
-      position: fixed;
-      top: 70px;
-      left: 0;
-      right: 0;
-      background-color: var(--background-color);
-      padding: 1rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      transform: translateY(-100%);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      z-index: 999;
-    }
-
-    .nav-links.active {
-      transform: translateY(0);
-      opacity: 1;
-      visibility: visible;
+      gap: 1rem;
     }
 
     .nav-links a {
       color: var(--text-color);
       text-decoration: none;
       font-weight: 500;
-      padding: 0.75rem 0;
       transition: color 0.3s ease;
     }
 
@@ -103,14 +85,9 @@
     .get-in-touch {
       background-color: var(--primary-color);
       color: white !important;
-      padding: 0.75rem 1rem;
+      padding: 0.5rem 1rem;
       border-radius: 5px;
-      text-align: center;
-      margin-top: 0.5rem;
       transition: background-color 0.3s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     .get-in-touch:hover {
@@ -118,13 +95,11 @@
     }
 
     .mobile-menu-button {
+      display: none;
       background: none;
       border: none;
       font-size: 1.5rem;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .info-container {
@@ -271,8 +246,8 @@
       right: 20px;
       background-color: #25D366;
       color: white;
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -289,39 +264,31 @@
     }
 
     .whatsapp-button img {
-      width: 25px;
-      height: 25px;
-    }
-
-    @media (min-width: 769px) {
-      .nav-links {
-        position: static;
-        flex-direction: row;
-        transform: none;
-        opacity: 1;
-        visibility: visible;
-        box-shadow: none;
-        padding: 0;
-        align-items: center;
-        gap: 1rem;
-      }
-
-      .nav-links a {
-        border-bottom: none;
-        padding: 0;
-      }
-
-      .get-in-touch {
-        margin-top: 0;
-        padding: 0.5rem 1rem;
-      }
-
-      .mobile-menu-button {
-        display: none;
-      }
+      width: 30px;
+      height: 30px;
     }
 
     @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--background-color);
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-menu-button {
+        display: block;
+      }
+
       .stats-container {
         flex-direction: column;
       }
@@ -346,14 +313,14 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </head>
 <body>
-  <!-- Navigation Bar with new styling -->
+  <!-- Updated Navigation Bar based on reference -->
   <header>
     <div class="container">
       <nav>
-        <a href="#" class="logo">
+        <div class="logo">
           <img src="WhatsApp Image 2025-01-17 at 4.38.04 PM.jpeg" alt="Punya Pantry Logo">
           <div class="logo-text">Punya Pantry</div>
-        </a>
+        </div>
         <button class="mobile-menu-button">☰</button>
         <div class="nav-links">
           <a href="bhandra.html">Home</a>
@@ -361,7 +328,7 @@
           <a href="#">Our Mission</a>
           <a href="paisa.html">Get Involved</a>
           <a href="#">Stories</a>
-          <a href="#" class="get-in-touch">Donate Now 🧡</a>
+          <a href="#" class="get-in-touch">Donate Now 🤲</a>
         </div>
       </nav>
     </div>
