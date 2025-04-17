@@ -53,10 +53,9 @@
     }
 
     .logo img {
-      height: 40px;
-      width: 40px;
+      height: 50px;
+      width: auto;
       border-radius: 50%;
-      object-fit: cover;
     }
 
     .logo-text {
@@ -67,18 +66,17 @@
 
     .nav-links {
       display: flex;
-      align-items: center;
       gap: 1rem;
     }
 
-    .nav-links a {
+    nav a {
       color: var(--text-color);
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s ease;
     }
 
-    .nav-links a:hover {
+    nav a:hover {
       color: var(--primary-color);
     }
 
@@ -123,10 +121,6 @@
       font-size: 1.2rem;
       max-width: 800px;
       margin: 0 auto;
-    }
-
-    .header-image {
-      display: none; /* Hide this since we're using background image */
     }
 
     .contact-section {
@@ -412,8 +406,8 @@
       right: 20px;
       background-color: #25D366;
       color: white;
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -430,8 +424,8 @@
     }
 
     .whatsapp-button img {
-      width: 25px;
-      height: 25px;
+      width: 30px;
+      height: 30px;
     }
 
     @media (max-width: 768px) {
@@ -443,32 +437,16 @@
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 70px;
+        top: 100%;
         left: 0;
         right: 0;
         background-color: var(--background-color);
         padding: 1rem;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        z-index: 999;
       }
 
       .nav-links.active {
         display: flex;
-      }
-
-      .nav-links a {
-        padding: 0.75rem 0;
-        border-bottom: 1px solid #eee;
-      }
-
-      .nav-links a:last-child {
-        border-bottom: none;
-      }
-
-      .get-in-touch {
-        margin-top: 0.5rem;
-        text-align: center;
-        padding: 0.75rem 1rem;
       }
 
       .contact-container {
@@ -500,20 +478,18 @@
   <header>
     <div class="container">
       <nav>
-        <a href="#" class="logo">
-          <img src="https://nulyffoundation.org/WhatsApp%20Image%202025-01-17%20at%204.38.04%20PM.jpeg" alt="Punya Pantry Logo">
+        <div class="logo">
+          <img src="WhatsApp Image 2025-01-17 at 4.38.04 PM.jpeg" alt="Punya Pantry Logo">
           <div class="logo-text">Punya Pantry</div>
-        </a>
-        <button class="mobile-menu-button" id="mobileMenuBtn">
-          <i class="fas fa-bars"></i>
-        </button>
+        </div>
+        <button class="mobile-menu-button" id="mobileMenuBtn">☰</button>
         <div class="nav-links" id="navLinks">
-          <a href="bhandra.html">Home</a>
-          <a href="#">Current bhandras details</a>
+          <a href="PunyaPantry.html">Home</a>
+          <a href="current.html">Current bhandras details</a>
           <a href="#">Our Mission</a>
           <a href="paisa.html">Get Involved</a>
           <a href="#">Stories</a>
-          <a href="#" class="get-in-touch">Donate Now 🧡</a>
+          <a href="contact.html" class="get-in-touch">Donate Now 🤲</a>
         </div>
       </nav>
     </div>
@@ -537,7 +513,7 @@
             There was an error sending your message. Please try again.
           </div>
           <div class="form-header">
-            <img src="https://nulyffoundation.org/WhatsApp%20Image%202025-01-17%20at%204.38.04%20PM.jpeg" alt="Contact Us">
+            <img src="WhatsApp Image 2025-01-17 at 4.38.04 PM.jpeg" alt="Contact Us">
           </div>
           <h2>Send Us a Message</h2>
           <form id="contactForm">
@@ -643,10 +619,6 @@
     </div>
   </section>
 
-  <a href="https://wa.me/919204451363" class="whatsapp-button" aria-label="Chat on WhatsApp">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
-  </a>
-
   <footer>
     <div class="container">
       <div class="copyright">
@@ -654,6 +626,10 @@
       </div>
     </div>
   </footer>
+
+  <a href="https://wa.me/919204451363" class="whatsapp-button" aria-label="Chat on WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
+  </a>
 
   <script>
     // Firebase configuration
@@ -679,15 +655,6 @@
         navLinks.classList.toggle('active');
       });
     }
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(e) {
-      if (navLinks && navLinks.classList.contains('active') && 
-          !navLinks.contains(e.target) && 
-          e.target !== mobileMenuBtn) {
-        navLinks.classList.remove('active');
-      }
-    });
 
     // Contact form submission
     const contactForm = document.getElementById('contactForm');
