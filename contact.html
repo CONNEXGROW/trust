@@ -56,6 +56,7 @@
       height: 40px;
       width: 40px;
       border-radius: 50%;
+      object-fit: cover;
     }
 
     .logo-text {
@@ -102,7 +103,7 @@
     }
 
     .page-header {
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/placeholder.svg?height=400&width=1200');
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
       background-size: cover;
       background-position: center;
       height: 300px;
@@ -122,6 +123,10 @@
       font-size: 1.2rem;
       max-width: 800px;
       margin: 0 auto;
+    }
+
+    .header-image {
+      display: none; /* Hide this since we're using background image */
     }
 
     .contact-section {
@@ -156,10 +161,11 @@
     }
 
     .form-header img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
+      max-width: 100px;
+      height: 100px;
+      border-radius: 50%;
       margin-bottom: 1rem;
+      object-fit: cover;
     }
 
     .form-group {
@@ -406,8 +412,8 @@
       right: 20px;
       background-color: #25D366;
       color: white;
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -424,8 +430,8 @@
     }
 
     .whatsapp-button img {
-      width: 30px;
-      height: 30px;
+      width: 25px;
+      height: 25px;
     }
 
     @media (max-width: 768px) {
@@ -452,6 +458,11 @@
 
       .nav-links a {
         padding: 0.75rem 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
       }
 
       .get-in-touch {
@@ -468,6 +479,10 @@
         font-size: 2rem;
       }
 
+      .page-header p {
+        font-size: 1rem;
+      }
+
       .stats-container {
         flex-direction: column;
       }
@@ -477,6 +492,7 @@
       }
     }
   </style>
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </head>
@@ -485,7 +501,7 @@
     <div class="container">
       <nav>
         <a href="#" class="logo">
-          <img src="/placeholder.svg?height=40&width=40" alt="Punya Pantry Logo">
+          <img src="https://nulyffoundation.org/WhatsApp%20Image%202025-01-17%20at%204.38.04%20PM.jpeg" alt="Punya Pantry Logo">
           <div class="logo-text">Punya Pantry</div>
         </a>
         <button class="mobile-menu-button" id="mobileMenuBtn">
@@ -521,7 +537,7 @@
             There was an error sending your message. Please try again.
           </div>
           <div class="form-header">
-            <img src="/placeholder.svg?height=200&width=400" alt="Contact Us">
+            <img src="https://nulyffoundation.org/WhatsApp%20Image%202025-01-17%20at%204.38.04%20PM.jpeg" alt="Contact Us">
           </div>
           <h2>Send Us a Message</h2>
           <form id="contactForm">
@@ -595,15 +611,15 @@
             <div class="social-links">
               <h3>Follow Us</h3>
               <div class="social-icons">
-                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
               </div>
             </div>
           </div>
           <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.2536055556584!2d77.22746857547855!3d28.561951175579837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce26f903969d7%3A0x8f89b5e7f76a2d51!2sNew%20Delhi%2C%20Delhi%2C%20India!5e0!3m2!1sen!2sus!4v1711939663000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.2536055556584!2d77.22746857547855!3d28.561951175579837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce26f903969d7%3A0x8f89b5e7f76a2d51!2sNew%20Delhi%2C%20Delhi%2C%20India!5e0!3m2!1sen!2sus!4v1711939663000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Maps Location"></iframe>
           </div>
         </div>
       </div>
@@ -640,72 +656,101 @@
   </footer>
 
   <script>
+    // Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyAKgUGPH2F8902-zKhjcBpogVpTtgwb_Ws",
       authDomain: "aspire-100k.firebaseapp.com",
       projectId: "aspire-100k",
-      storageBucket: "aspire-100k.firebasestorage.app",
+      storageBucket: "aspire-100k.appspot.com",
       messagingSenderId: "393514183894",
       appId: "1:393514183894:web:2a3ac54e221ef33b6aed77"
     };
 
+    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-      document.getElementById('navLinks').classList.toggle('active');
-    });
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
 
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const submitBtn = document.getElementById('submitBtn');
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
-      
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const phone = document.getElementById('phone').value;
-      const subject = document.getElementById('subject').value;
-      const message = document.getElementById('message').value;
-      const timestamp = new Date();
-      
-      db.collection("contactMessages").add({
-        name: name,
-        email: email,
-        phone: phone,
-        subject: subject,
-        message: message,
-        timestamp: timestamp
-      })
-      .then(() => {
-        document.getElementById('successMessage').style.display = 'block';
-        document.getElementById('errorMessage').style.display = 'none';
-        document.getElementById('contactForm').reset();
-        
-        setTimeout(function() {
-          document.getElementById('successMessage').style.display = 'none';
-        }, 5000);
-      })
-      .catch((error) => {
-        console.error("Error adding document: ", error);
-        document.getElementById('errorMessage').style.display = 'block';
-        document.getElementById('successMessage').style.display = 'none';
-        
-        setTimeout(function() {
-          document.getElementById('errorMessage').style.display = 'none';
-        }, 5000);
-      })
-      .finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Send Message';
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
       });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (navLinks && navLinks.classList.contains('active') && 
+          !navLinks.contains(e.target) && 
+          e.target !== mobileMenuBtn) {
+        navLinks.classList.remove('active');
+      }
     });
 
-    function animateValue(id, start, end, duration) {
-      if (duration <= 0) return;
+    // Contact form submission
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-      let obj = document.getElementById(id);
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        const timestamp = new Date();
+
+        // Add form data to Firestore
+        db.collection("contactMessages").add({
+          name: name,
+          email: email,
+          phone: phone,
+          subject: subject,
+          message: message,
+          timestamp: timestamp
+        })
+        .then(() => {
+          successMessage.style.display = 'block';
+          errorMessage.style.display = 'none';
+          contactForm.reset();
+
+          setTimeout(function() {
+            successMessage.style.display = 'none';
+          }, 5000);
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+          errorMessage.style.display = 'block';
+          successMessage.style.display = 'none';
+          errorMessage.textContent = `There was an error sending your message: ${error.message}`;
+
+          setTimeout(function() {
+            errorMessage.style.display = 'none';
+          }, 5000);
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Send Message';
+        });
+      });
+    }
+
+    // Animate counter values
+    function animateValue(id, start, end, duration) {
+      const obj = document.getElementById(id);
+      
+      if (!obj || duration <= 0) return;
+      
       let range = end - start;
       let minTimer = 50;
       let stepTime = Math.max(Math.abs(Math.floor(duration / range)), minTimer);
@@ -718,7 +763,7 @@
         let remaining = Math.max((endTime - now) / duration, 0);
         let value = Math.round(end - (remaining * range));
         obj.innerHTML = value + "+";
-        if (value == end) {
+        if (value >= end) {
           clearInterval(timer);
         }
       }
@@ -727,24 +772,27 @@
       run();
     }
 
+    // Stats animation with Intersection Observer
     const statsSection = document.querySelector('.stats');
     let animated = false;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !animated) {
-          statsSection.classList.add('visible');
-          animateValue("meals-served", 0, 12000, 3000);
-          animateValue("volunteers", 0, 838, 4000);
-          animateValue("communities", 0, 70, 2000);
-          animated = true;
-        }
+    if (statsSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !animated) {
+            statsSection.classList.add('visible');
+            animateValue("meals-served", 0, 12000, 3000);
+            animateValue("volunteers", 0, 838, 4000);
+            animateValue("communities", 0, 70, 2000);
+            animated = true;
+          }
+        });
+      }, {
+        threshold: 0.1
       });
-    }, {
-      threshold: 0.1
-    });
 
-    observer.observe(statsSection);
+      observer.observe(statsSection);
+    }
   </script>
 </body>
 </html>
