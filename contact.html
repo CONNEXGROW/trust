@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get in Touch - Punya Pantry</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #FF8C00;
+      --text-color: #333;
+      --background-color: #fff;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--background-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background-color: var(--background-color);
+      padding: 1rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .get-in-touch {
+      background-color: var(--primary-color);
+      color: white !important;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .get-in-touch:hover {
+      background-color: #e67e00;
+    }
+
+    .mobile-menu-button {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .page-header {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/placeholder.svg?height=400&width=1200');
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .contact-section {
+      padding: 4rem 0;
+      flex: 1;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .contact-form {
+      background-color: #f8f8f8;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .form-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .form-header img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--primary-color);
+      outline: none;
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      position: relative;
+    }
+
+    .submit-btn:hover {
+      background-color: #e67e00;
+    }
+
+    .submit-btn:disabled {
+      background-color: #ffb866;
+      cursor: not-allowed;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .info-card {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .info-card h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-item i {
+      font-size: 1.2rem;
+      margin-right: 1rem;
+      color: var(--primary-color);
+      width: 20px;
+      text-align: center;
+    }
+
+    .info-item .info-content {
+      flex: 1;
+    }
+
+    .info-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .info-item p {
+      font-size: 1rem;
+      color: var(--text-color);
+      margin: 0;
+    }
+
+    .social-links {
+      margin-top: 2rem;
+    }
+
+    .social-links h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .social-icon:hover {
+      background-color: #e67e00;
+      transform: translateY(-3px);
+    }
+
+    .map-container {
+      height: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .success-message {
+      display: none;
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .error-message {
+      display: none;
+      background-color: #f44336;
+      color: white;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .stats {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .stats.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stats-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      flex: 1;
+      min-width: 200px;
+      margin: 1rem;
+    }
+
+    .stat-value {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      color: white;
+    }
+
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      text-decoration: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
+      z-index: 1000;
+    }
+
+    .whatsapp-button:hover {
+      background-color: #128C7E;
+    }
+
+    .whatsapp-button img {
+      width: 30px;
+      height: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-button {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background-color: var(--background-color);
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 0.75rem 0;
+      }
+
+      .get-in-touch {
+        margin-top: 0.5rem;
+        text-align: center;
+        padding: 0.75rem 1rem;
+      }
+
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .stats-container {
+        flex-direction: column;
+      }
+
+      .stat-item {
+        margin-bottom: 2rem;
+      }
+    }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">
+          <img src="/placeholder.svg?height=40&width=40" alt="Punya Pantry Logo">
+          <div class="logo-text">Punya Pantry</div>
+        </a>
+        <button class="mobile-menu-button" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
+          <a href="bhandra.html">Home</a>
+          <a href="#">Current bhandras details</a>
+          <a href="#">Our Mission</a>
+          <a href="paisa.html">Get Involved</a>
+          <a href="#">Stories</a>
+          <a href="#" class="get-in-touch">Donate Now 🧡</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <h1>Get in Touch</h1>
+      <p>We'd love to hear from you. Reach out to us with any questions, suggestions, or if you'd like to get involved with our foundation.</p>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-container">
+        <div class="contact-form">
+          <div class="success-message" id="successMessage">
+            Your message has been sent successfully! We'll get back to you soon.
+          </div>
+          <div class="error-message" id="errorMessage">
+            There was an error sending your message. Please try again.
+          </div>
+          <div class="form-header">
+            <img src="/placeholder.svg?height=200&width=400" alt="Contact Us">
+          </div>
+          <h2>Send Us a Message</h2>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject" required>
+                <option value="" selected disabled>Select a subject</option>
+                <option value="general">General Inquiry</option>
+                <option value="donation">Donation Information</option>
+                <option value="volunteer">Volunteer Opportunities</option>
+                <option value="partnership">Partnership Proposal</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
+          </form>
+        </div>
+
+        <div class="contact-info">
+          <div class="info-card">
+            <h2>Contact Information</h2>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="info-content">
+                <h3>Address</h3>
+                <p>123 Foundation Street, Bhandra District</p>
+                <p>New Delhi, India 110001</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-phone-alt"></i>
+              <div class="info-content">
+                <h3>Phone</h3>
+                <p>+91 98765 43210</p>
+                <p>+91 12345 67890</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <div class="info-content">
+                <h3>Email</h3>
+                <p>info@punyapantry.org</p>
+                <p>support@punyapantry.org</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-clock"></i>
+              <div class="info-content">
+                <h3>Office Hours</h3>
+                <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+                <p>Saturday: 10:00 AM - 2:00 PM</p>
+                <p>Sunday: Closed</p>
+              </div>
+            </div>
+            <div class="social-links">
+              <h3>Follow Us</h3>
+              <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.2536055556584!2d77.22746857547855!3d28.561951175579837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce26f903969d7%3A0x8f89b5e7f76a2d51!2sNew%20Delhi%2C%20Delhi%2C%20India!5e0!3m2!1sen!2sus!4v1711939663000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats" id="stats">
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-value" id="meals-served">0+</div>
+        <div class="stat-label">Meals Served</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="volunteers">0+</div>
+        <div class="stat-label">Dedicated Volunteers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="communities">0+</div>
+        <div class="stat-label">Communities Impacted</div>
+      </div>
+    </div>
+  </section>
+
+  <a href="https://wa.me/919204451363" class="whatsapp-button" aria-label="Chat on WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
+  </a>
+
+  <footer>
+    <div class="container">
+      <div class="copyright">
+        &copy; 2025 Punya Pantry - Sharing Love Through Food. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAKgUGPH2F8902-zKhjcBpogVpTtgwb_Ws",
+      authDomain: "aspire-100k.firebaseapp.com",
+      projectId: "aspire-100k",
+      storageBucket: "aspire-100k.firebasestorage.app",
+      messagingSenderId: "393514183894",
+      appId: "1:393514183894:web:2a3ac54e221ef33b6aed77"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('active');
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      const timestamp = new Date();
+      
+      db.collection("contactMessages").add({
+        name: name,
+        email: email,
+        phone: phone,
+        subject: subject,
+        message: message,
+        timestamp: timestamp
+      })
+      .then(() => {
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'none';
+        document.getElementById('contactForm').reset();
+        
+        setTimeout(function() {
+          document.getElementById('successMessage').style.display = 'none';
+        }, 5000);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+        
+        setTimeout(function() {
+          document.getElementById('errorMessage').style.display = 'none';
+        }, 5000);
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Send Message';
+      });
+    });
+
+    function animateValue(id, start, end, duration) {
+      if (duration <= 0) return;
+
+      let obj = document.getElementById(id);
+      let range = end - start;
+      let minTimer = 50;
+      let stepTime = Math.max(Math.abs(Math.floor(duration / range)), minTimer);
+      let startTime = new Date().getTime();
+      let endTime = startTime + duration;
+      let timer;
+
+      function run() {
+        let now = new Date().getTime();
+        let remaining = Math.max((endTime - now) / duration, 0);
+        let value = Math.round(end - (remaining * range));
+        obj.innerHTML = value + "+";
+        if (value == end) {
+          clearInterval(timer);
+        }
+      }
+
+      timer = setInterval(run, stepTime);
+      run();
+    }
+
+    const statsSection = document.querySelector('.stats');
+    let animated = false;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !animated) {
+          statsSection.classList.add('visible');
+          animateValue("meals-served", 0, 12000, 3000);
+          animateValue("volunteers", 0, 838, 4000);
+          animateValue("communities", 0, 70, 2000);
+          animated = true;
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    observer.observe(statsSection);
+  </script>
+</body>
+</html>
